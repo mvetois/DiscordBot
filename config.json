@@ -1,6 +1,20 @@
 {
     "prefix": "!",
+    "config": {
+        "clear": {
+            "maxClear": 100,
+            "minClear": 1
+        }
+    },
     "roles": {
         "admin":"Admin"
+    },
+    "messages": {
+        "clear": {
+            "noArgs": "Veuillez donner le nombre de message à supprimer",
+            "noDigit": "Le nombre de message à supprimer ne doit contenir uniquement des chiffres",
+            "maxClear": "Vous ne pouvez pas supprimer trop de messages, le maximum est de ",
+            "minClear": "Vous allez rien supprimer là.. le minimum est de "
+        }
     }
 }
