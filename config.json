@@ -10,6 +10,13 @@
         "admin":"Admin"
     },
     "messages": {
+        "help": {
+            "title": "Menu Help",
+            "help": "Affichage de ce menu",
+            "ping": "Je vous laisse découvrir 😉",
+            "clearcmd": "Nombre de messages",
+            "clear": "Supprime Le nombre de message du channel"
+        },
         "clear": {
             "noArgs": "Veuillez donner le nombre de message à supprimer",
             "noDigit": "Le nombre de message à supprimer ne doit contenir uniquement des chiffres",

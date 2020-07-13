@@ -3,6 +3,25 @@ const client = new Discord.Client();
 const token = require("./token.json");
 const config = require("./config.json");
 
+const helpEmbed = {
+    color: 0x357AB7,
+    title: config.messages.help.title,
+    fields: [
+        {
+            name: config.prefix + "Help",
+            value: config.messages.help.help,
+        },
+        {
+            name: config.prefix + "Ping",
+            value: config.messages.help.ping,
+        },
+        {
+            name: config.prefix + "Clear <" + config.messages.help.clearcmd + ">",
+            value: config.messages.help.clear,
+        }  
+    ]
+};
+
 client.on("ready", function () {
     console.log("Bot started !");
 })
@@ -11,7 +30,9 @@ client.on("message", (msg) => {
     var args = msg.content.toLowerCase().split(" ");
     var admin = msg.member.roles.cache.some(role => role.name === config.roles.admin);
 
-    if (args[0] === (config.prefix + "ping")) {
+    if (args[0] === (config.prefix + "help")) {
+        msg.channel.send({ embed: helpEmbed });
+    } else if (args[0] === (config.prefix + "ping")) {
         if (admin) {
             msg.react("👌");
             msg.reply("Pong !");
