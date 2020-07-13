@@ -9,6 +9,9 @@
     "roles": {
         "admin":"Admin"
     },
+    "channel" : {
+        "logJoinLeave" : "log-join-leave"
+    },
     "messages": {
         "help": {
             "title": "Menu Help",
@@ -22,6 +25,14 @@
             "noDigit": "Le nombre de message à supprimer ne doit contenir uniquement des chiffres",
             "maxClear": "Vous ne pouvez pas supprimer trop de messages, le maximum est de ",
             "minClear": "Vous allez rien supprimer là.. le minimum est de "
+        },
+        "joinLeave" : {
+            "joinColor": "0x00FF00",
+            "joinTitle": "Bienvenue !",
+            "joinMessage" : "à rejoint le serveur",
+            "leaveColor" : "0xFF0000",
+            "leaveTitle": "Bye Bye !",
+            "leaveMessage": "à quiter le serveur"
         }
     }
 }

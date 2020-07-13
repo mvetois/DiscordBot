@@ -65,4 +65,33 @@ client.on("message", (msg) => {
     }
 })
 
+client.on('guildMemberAdd', (member) => {
+    const channel = member.guild.channels.cache.find(channel => channel.name === config.channel.logJoinLeave);
+    
+    if(!channel)
+        return;
+    const welcomeEmbed = new Discord.MessageEmbed()
+        .setColor(config.messages.joinLeave.joinColor)
+        .setAuthor(member.user.tag, member.user.displayAvatarURL(),)
+        .setTitle(config.messages.joinLeave.joinTitle)
+        .setDescription(`${member} ${config.messages.joinLeave.joinMessage}`)
+        .setTimestamp();
+    channel.send(welcomeEmbed);
+});
+
+client.on('guildMemberRemove', (member) => {
+    const channel = member.guild.channels.cache.find(channel => channel.name === config.channel.logJoinLeave);
+    
+    if(!channel)
+        return;
+    const welcomeEmbed = new Discord.MessageEmbed()
+        .setColor(config.messages.joinLeave.leaveColor)
+        .setAuthor(member.user.tag, member.user.displayAvatarURL(),)
+        .setTitle(config.messages.joinLeave.leaveTitle)
+        .setDescription(`${member} ${config.messages.joinLeave.leaveMessage}`)
+        .setTimestamp();
+    channel.send(welcomeEmbed);
+});
+
+
 client.login(token.token);
