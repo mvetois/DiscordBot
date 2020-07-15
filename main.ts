@@ -18,7 +18,7 @@ const helpEmbed = {
         {
             name: config.prefix + "Clear <" + config.messages.help.clearcmd + ">",
             value: config.messages.help.clear,
-        }  
+        }
     ]
 };
 
@@ -65,9 +65,9 @@ client.on("message", (msg) => {
     }
 })
 
-client.on('guildMemberAdd', (member) => {
+client.on("guildMemberAdd", (member) => {
     const channel = member.guild.channels.cache.find(channel => channel.name === config.channel.logJoinLeave);
-    
+
     if(!channel)
         return;
     const welcomeEmbed = new Discord.MessageEmbed()
@@ -79,19 +79,35 @@ client.on('guildMemberAdd', (member) => {
     channel.send(welcomeEmbed);
 });
 
-client.on('guildMemberRemove', (member) => {
+client.on("guildMemberRemove", (member) => {
     const channel = member.guild.channels.cache.find(channel => channel.name === config.channel.logJoinLeave);
-    
+
     if(!channel)
         return;
-    const welcomeEmbed = new Discord.MessageEmbed()
+    const byeEmbed = new Discord.MessageEmbed()
         .setColor(config.messages.joinLeave.leaveColor)
         .setAuthor(member.user.tag, member.user.displayAvatarURL(),)
         .setTitle(config.messages.joinLeave.leaveTitle)
         .setDescription(`${member} ${config.messages.joinLeave.leaveMessage}`)
         .setTimestamp();
-    channel.send(welcomeEmbed);
+    channel.send(byeEmbed);
 });
 
+client.on('messageUpdate', (oldMessage, newMessage) => {
+    const channel = oldMessage.guild.channels.cache.find(channel => channel.name === config.channel.logJoinLeave);
+
+    if(!channel || oldMessage.content == newMessage.content)
+        return;
+    const editEmbed = new Discord.MessageEmbed()
+        .setColor(config.messages.editDelete.messageChangeColor)
+        .setAuthor(oldMessage.author.tag, oldMessage.author.displayAvatarURL(),)
+        .setTitle(config.messages.editDelete.messageChangeTitle + " #" + oldMessage.channel.name)
+        .addFields(
+            {name: config.messages.editDelete.messageChangeBefore, value: oldMessage},
+            {name: config.messages.editDelete.messageChangeAfter, value: newMessage},
+        )
+        .setTimestamp();
+    channel.send(editEmbed);
+});
 
 client.login(token.token);

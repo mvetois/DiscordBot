@@ -33,6 +33,12 @@
             "leaveColor" : "0xFF0000",
             "leaveTitle": "Bye Bye !",
             "leaveMessage": "à quiter le serveur"
+        },
+        "editDelete": {
+            "messageChangeColor" : "0xFFFF00",
+            "messageChangeTitle": "Message modifié dans",
+            "messageChangeBefore": "Avant",
+            "messageChangeAfter": "Après"
         }
     }
 }
