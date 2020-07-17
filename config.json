@@ -10,7 +10,8 @@
         "admin":"Admin"
     },
     "channel" : {
-        "logJoinLeave" : "log-join-leave"
+        "logJoinLeave" : "log-join-leave",
+        "logMessages": "log-messages"
     },
     "messages": {
         "help": {
@@ -38,7 +39,10 @@
             "messageChangeColor" : "0xFFFF00",
             "messageChangeTitle": "Message modifié dans",
             "messageChangeBefore": "Avant",
-            "messageChangeAfter": "Après"
+            "messageChangeAfter": "Après",
+            "messageDeleteColor": "0xFF0000",
+            "messageDeleteTitle": "Message supprimé dans",
+            "messageDeleteDelete": "Message"
         }
     }
 }

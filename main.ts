@@ -22,7 +22,7 @@ const helpEmbed = {
     ]
 };
 
-client.on("ready", function () {
+client.on("ready", () => {
     console.log("Bot started !");
 })
 
@@ -93,8 +93,8 @@ client.on("guildMemberRemove", (member) => {
     channel.send(byeEmbed);
 });
 
-client.on('messageUpdate', (oldMessage, newMessage) => {
-    const channel = oldMessage.guild.channels.cache.find(channel => channel.name === config.channel.logJoinLeave);
+client.on("messageUpdate", (oldMessage, newMessage) => {
+    const channel = oldMessage.guild.channels.cache.find(channel => channel.name === config.channel.logMessages);
 
     if(!channel || oldMessage.content == newMessage.content)
         return;
@@ -109,5 +109,19 @@ client.on('messageUpdate', (oldMessage, newMessage) => {
         .setTimestamp();
     channel.send(editEmbed);
 });
+
+client.on("messageDelete", (message) => {
+    const channel = message.guild.channels.cache.find(channel => channel.name === config.channel.logMessages);
+
+    if(!channel)
+        return;
+    const delEmbed = new Discord.MessageEmbed()
+    .setAuthor(message.author.tag, message.author.avatarURL)
+    .setColor(config.messages.editDelete.messageDeleteColor)
+    .setTitle(config.messages.editDelete.messageDeleteTitle + " #" + message.channel.name)
+    .addField(config.messages.editDelete.messageDeleteDelete, message.content)
+    .setTimestamp();
+    channel.send(delEmbed);
+})
 
 client.login(token.token);
