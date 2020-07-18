@@ -1,7 +1,9 @@
 const Discord = require("discord.js");
 const client = new Discord.Client();
-const token = require("./token.json");
-const config = require("./config.json");
+const token = require("../config/token.json");
+const config = require("../config/config.json");
+
+
 
 const helpEmbed = {
     color: 0x357AB7,
