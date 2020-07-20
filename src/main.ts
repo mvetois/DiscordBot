@@ -95,6 +95,60 @@ client.on("guildMemberRemove", (member) => {
     channel.send(byeEmbed);
 });
 
+client.on("guildMemberUpdate", (oldMember, newMember) => {
+    const channel = oldMember.guild.channels.cache.find(channel => channel.name === config.channel.logMembers);
+
+    if(!channel)
+        return;
+    
+    if (newMember.displayName != oldMember.displayName) {
+        const embed = new Discord.MessageEmbed()
+            .setAuthor(newMember.user.tag, newMember.user.displayAvatarURL(),)
+            .setTimestamp()
+            .setColor(config.messages.memberUpdate.nicknameColor)
+            .setTitle("**" + newMember.user.displayName + "** " + config.messages.memberUpdate.nicknameTitle)
+            .addFields(
+                {name: config.messages.memberUpdate.nicknameBefore, value: oldMember.displayName},
+                {name: config.messages.memberUpdate.nicknameAfter, value: newMember.displayName}
+            );
+        channel.send(embed); 
+    }
+    if (newMember.roles != oldMember.roles) {
+        var role = " ";
+        var roleName = " ";
+        newMember.roles.cache.every((value) => {
+            if (oldMember.roles.cache.find(role => role.name === value.name) == null) {
+                roleName = value.name
+                role = "+";
+            }
+        });
+        oldMember.roles.cache.every((value) => {
+            if (newMember.roles.cache.find(role => role.name === value.name) == null) {
+                roleName = value.name
+                role = "-";
+            }
+        });
+        if (role == "+") {
+            const embed = new Discord.MessageEmbed()
+                .setAuthor(newMember.user.tag, newMember.user.displayAvatarURL(),)
+                .setTimestamp()
+                .setColor(config.messages.memberUpdate.roleAddColor)
+                .setTitle("**" + newMember.user.username + "** " + config.messages.memberUpdate.roleAddTitle)
+                .setDescription(newMember.roles.cache.find(role => role.name === roleName));
+            channel.send(embed);
+        } else if (role == "-") {
+            const embed = new Discord.MessageEmbed()
+                .setAuthor(newMember.user.tag, newMember.user.displayAvatarURL(),)
+                .setTimestamp()
+                .setColor(config.messages.memberUpdate.roleRemColor)
+                .setTitle("**" + newMember.user.username + "** " + config.messages.memberUpdate.roleRemTitle)
+                .setDescription(oldMember.roles.cache.find(role => role.name === roleName));
+            channel.send(embed);
+        }
+
+    }
+});
+
 client.on("messageUpdate", (oldMessage, newMessage) => {
     const channel = oldMessage.guild.channels.cache.find(channel => channel.name === config.channel.logMessages);
 

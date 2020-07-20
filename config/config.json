@@ -11,6 +11,7 @@
     },
     "channel" : {
         "logJoinLeave" : "log-join-leave",
+        "logMembers": "log-members",
         "logMessages": "log-messages"
     },
     "messages": {
@@ -34,6 +35,18 @@
             "leaveColor" : "0xFF0000",
             "leaveTitle": "Bye Bye !",
             "leaveMessage": "à quiter le serveur"
+        },
+        "memberUpdate": {
+            "nicknameColor": "0xF79824",
+            "nicknameTitle": "a changer son nom",
+            "nicknameBefore": "Avant",
+            "nicknameAfter": "Après",
+            "avatarColor": "0xFF5400",
+            "avatarTitle": "a changer son avatar",
+            "roleAddColor": "0x00FF00",
+            "roleAddTitle": "a un rôle en plus",
+            "roleRemColor": "0xFF0000",
+            "roleRemTitle": "a un rôle en moins"
         },
         "editDelete": {
             "messageChangeColor" : "0xFFFF00",
