@@ -1,6 +1,13 @@
 # DiscordBot
 
-A simple Discord bot announcing all new free games on the Epic Games Store.
+A simple Discord bot announcing all new free games on the Epic Games Store (and more, in the future ... ).
+
+
+![GitHub](https://img.shields.io/github/license/mvetois/DiscordBot?style=flat-square)
+![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/mvetois/DiscordBot?style=flat-square)
+![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed-raw/mvetois/DiscordBot?style=flat-square)
+![GitHub issues](https://img.shields.io/github/issues-raw/mvetois/DiscordBot?style=flat-square)
+![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/mvetois/DiscordBot?style=flat-square)
 
 ## How to configure
 
