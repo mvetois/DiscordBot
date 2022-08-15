@@ -1,7 +1,5 @@
 const axios = require("axios");
 const { EmbedBuilder } = require("discord.js");
-const { captureRejectionSymbol } = require("events");
-
 
 const fetchFreeGames = async () => {
     const res = await axios.get("https://store-site-backend-static.ak.epicgames.com/freeGamesPromotions?locale=fr&country=FR&allowCountries=FR");
@@ -19,7 +17,8 @@ const embedGame = (client, game) => {
         description: game.description,
         color: 0x9dfe89,
         image: {url: game.keyImages.find((elem) => (elem.type === "OfferImageWide")).url},
-        url: "https://store.epicgames.com/fr/p/" + game.catalogNs.mappings.find((elem) => (elem.pageType === "productHome")).pageSlug
+        url: "https://store.epicgames.com/fr/p/" + game.catalogNs.mappings.find((elem) => (elem.pageType === "productHome")).pageSlug,
+        thumbnail: {url: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Epic_Games_logo.png/527px-Epic_Games_logo.png"}
     });
     const targetChannel = client.channels.cache.get(process.env.CHANNEL_ID);
     targetChannel.send({
@@ -29,25 +28,24 @@ const embedGame = (client, game) => {
                 type: 1,
                 components: [
                     {
-                        style: 1,
-                        label: (game.price.totalPrice.originalPrice / 100) + "€",
-                        custom_id: "row_0_button_0",
-                        disabled: true,
-                        type: 2
+                        type: 2,
+                        style: 4,
+                        label: (game.price.totalPrice.originalPrice / 100) + " €",
+                        custom_id: "originalPrice",
+                        disabled: true
                     },
                     {
-                        style: 3,
+                        type: 2,
+                        style: 1,
+                        custom_id: "discountPrice",
                         label: "Gratuit",
-                        custom_id: "row_0_button_1",
-                        disabled: false,
-                        type: 2
                     },
                     {
                         type: 2,
                         style: 5,
-                        label: "Obtenir",
+                        label: "Site Epic Games",
                         url: "https://store.epicgames.com/fr/p/" + game.catalogNs.mappings.find((elem) => (elem.pageType === "productHome")).pageSlug
-                    },
+                    }
                 ]
             }
         ]
