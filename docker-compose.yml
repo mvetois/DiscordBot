@@ -1,0 +1,11 @@
+version: "3.7"
+services:
+    bot:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        environment:
+            TOKEN: ${TOKEN}
+            CLIENT_ID: ${CLIENT_ID}
+            GUILD_ID: ${GUILD_ID}
+            CHANNEL_ID: ${CHANNEL_ID}
