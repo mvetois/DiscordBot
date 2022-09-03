@@ -54,6 +54,9 @@ const embedGame = (client, game) => {
 
 const freeGamesEpic = async (client) => {
     const freeGames = await fetchFreeGames();
-    embedGame(client, freeGames[0]);
+    console.log(freeGames);
+    for (const game of freeGames) {
+        embedGame(client, game);
+    }
 }
 module.exports = freeGamesEpic;
